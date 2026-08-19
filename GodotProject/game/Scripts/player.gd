@@ -83,7 +83,7 @@ func _update_animation() -> void:
 
 	var horizontal_speed := Vector2(velocity.x, velocity.z).length()
 	if horizontal_speed > 0.2:
-		animation_player.speed_scale = clampf(horizontal_speed / RUN_SPEED, 0.5, 1.25)
+		animation_player.speed_scale = 1.0
 		_play_animation("Run")
 	else:
 		animation_player.speed_scale = 1.0
