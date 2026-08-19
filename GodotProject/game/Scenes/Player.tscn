@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cxwsbrkx8u4lb"]
+
+[ext_resource type="Script" uid="uid://cdwietv85et" path="res://Scripts/player.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://ivmfibex8hx3" path="res://Models/Hero1.glb" id="2_hero"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
+height = 1.7909371
+
+[node name="Player" type="CharacterBody3D" unique_id=1863557764 groups=["player"]]
+script = ExtResource("1_script")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=830403720]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0031782389, 0.7808113, 0)
+shape = SubResource("CapsuleShape3D_player")
+
+[node name="Model" parent="." unique_id=1348450358 instance=ExtResource("2_hero")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.135, 0)
+
+[node name="CameraPivot" type="Node3D" parent="." unique_id=1996532400]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=318646857]
+current = true
+fov = 60.0

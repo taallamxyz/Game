@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bqp4fpnjr1lqv"]
+
+[ext_resource type="PackedScene" uid="uid://cx51bxiig0olb" path="res://Models/World.glb" id="1_0jree"]
+[ext_resource type="PackedScene" uid="uid://cxwsbrkx8u4lb" path="res://Scenes/Player.tscn" id="2_player"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
+sky_top_color = Color(0.25, 0.5, 0.9, 1)
+sky_horizon_color = Color(0.55, 0.75, 0.95, 1)
+sky_curve = 0.12
+ground_bottom_color = Color(0.35, 0.45, 0.5, 1)
+ground_horizon_color = Color(0.55, 0.75, 0.95, 1)
+
+[sub_resource type="Sky" id="Sky_sky"]
+sky_material = SubResource("ProceduralSkyMaterial_sky")
+
+[sub_resource type="Environment" id="Environment_sky"]
+background_mode = 2
+sky = SubResource("Sky_sky")
+ambient_light_source = 3
+ambient_light_energy = 1.2
+
+[node name="Node3D" type="Node3D" unique_id=1204233141]
+
+[node name="World" parent="." unique_id=106018233 instance=ExtResource("1_0jree")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0023317337, -2.3841858e-07, -0.0153307915)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1321750440]
+environment = SubResource("Environment_sky")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=1609234459]
+transform = Transform3D(0.86602527, 0.38302252, -0.32139382, 0, 0.64278734, 0.7660447, 0.50000024, -0.66341406, 0.55667007, 0, 0, 0)
+light_color = Color(1, 0.95, 0.85, 1)
+light_energy = 1.2
+shadow_enabled = true
+
+[node name="Player" parent="." unique_id=18695575 instance=ExtResource("2_player")]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 9.620497, 0.23104103, 5.531396)
+WALK_SPEED = 0.5
+RUN_SPEED = 1.0
+JUMP_SPEED = 2.5
