@@ -5,6 +5,8 @@ extends CharacterBody3D
 @export var JUMP_SPEED := 4.5
 @export var ACCELERATION := 12.0
 @export var ROTATION_SPEED := 10.0
+@export var FALL_THRESHOLD := -5.0
+@export var max_health := 100
 
 @onready var model: Node3D = $Model
 @onready var camera_pivot: Node3D = $CameraPivot
@@ -14,9 +16,16 @@ extends CharacterBody3D
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var animation_state := ""
 var camera_pitch := -0.55
+var respawn_position := Vector3.ZERO
+var health: int = max_health
+var coins := 0
+
+signal health_changed(current_health: int, maximum_health: int)
+signal coins_changed(amount: int)
 
 func _ready() -> void:
 
+	respawn_position = global_position
 	camera.position = Vector3(0.0, 2.2, 5.0)
 	camera_pivot.rotation.x = camera_pitch
 	camera.current = true
@@ -25,6 +34,9 @@ func _ready() -> void:
 		_set_loop("Idle")
 		_set_loop("Run")
 		_play_animation("Idle")
+
+	health_changed.emit(health, max_health)
+	coins_changed.emit(coins)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -35,6 +47,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	elif event is InputEventMouseButton and event.pressed:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	elif event.is_action_pressed("test_damage"):
+		take_damage(10)
+	elif event.is_action_pressed("test_coin"):
+		add_coin()
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -67,7 +83,21 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0.0, ACCELERATION * delta)
 
 	move_and_slide()
+	if global_position.y < FALL_THRESHOLD:
+		respawn()
 	_update_animation()
+
+func respawn() -> void:
+	global_position = respawn_position
+	velocity = Vector3.ZERO
+
+func take_damage(amount: int) -> void:
+	health = maxi(health - amount, 0)
+	health_changed.emit(health, max_health)
+
+func add_coin(amount: int = 1) -> void:
+	coins += amount
+	coins_changed.emit(coins)
 
 func _find_animation_player() -> AnimationPlayer:
 	return model.find_child("AnimationPlayer", true, false) as AnimationPlayer

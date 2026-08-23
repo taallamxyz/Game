@@ -2,6 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://cx51bxiig0olb" path="res://Models/World.glb" id="1_0jree"]
 [ext_resource type="PackedScene" uid="uid://cxwsbrkx8u4lb" path="res://Scenes/Player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://Scenes/TreasureBox.tscn" id="3_treasure"]
+[ext_resource type="PackedScene" path="res://Scenes/HUD.tscn" id="4_hud"]
+[ext_resource type="PackedScene" path="res://Scenes/Coin.tscn" id="5_coin"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
 sky_top_color = Color(0.25, 0.5, 0.9, 1)
@@ -22,7 +25,7 @@ ambient_light_energy = 1.2
 [node name="Node3D" type="Node3D" unique_id=1204233141]
 
 [node name="World" parent="." unique_id=106018233 instance=ExtResource("1_0jree")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0023317337, -2.3841858e-07, -0.0153307915)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0023994446, -0.035277396, -0.014318466)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1321750440]
 environment = SubResource("Environment_sky")
@@ -34,7 +37,15 @@ light_energy = 1.2
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=18695575 instance=ExtResource("2_player")]
-transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 9.620497, 0.23104103, 5.531396)
-WALK_SPEED = 0.5
-RUN_SPEED = 1.0
-JUMP_SPEED = 2.5
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 9.620497, 0.05519271, 5.531396)
+WALK_SPEED = 1.0
+RUN_SPEED = 2.0
+JUMP_SPEED = 3.0
+
+[node name="TreasureBox" parent="." unique_id=485449976 instance=ExtResource("3_treasure")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.938867, 0.06681737, 5.5)
+
+[node name="HUD" parent="." instance=ExtResource("4_hud")]
+
+[node name="Coin" parent="." instance=ExtResource("5_coin")]
+position = Vector3(10.5, 0.2, 5.5)

@@ -1,0 +1,18 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/coin.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://qr803w5f8ck0" path="res://Models/Coin.blend" id="2_model"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_coin"]
+radius = 0.14
+
+[node name="Coin" type="Area3D" groups=["collectible"]]
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+script = ExtResource("1_script")
+
+[node name="Model" parent="." instance=ExtResource("2_model")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_coin")
