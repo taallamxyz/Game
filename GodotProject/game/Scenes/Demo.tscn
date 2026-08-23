@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cx51bxiig0olb" path="res://Models/World.glb" id="1_0jree"]
 [ext_resource type="PackedScene" uid="uid://cxwsbrkx8u4lb" path="res://Scenes/Player.tscn" id="2_player"]
-[ext_resource type="PackedScene" path="res://Scenes/TreasureBox.tscn" id="3_treasure"]
+[ext_resource type="PackedScene" uid="uid://dkmmp4akndagp" path="res://Scenes/TreasureBox.tscn" id="3_treasure"]
 [ext_resource type="PackedScene" path="res://Scenes/HUD.tscn" id="4_hud"]
 [ext_resource type="PackedScene" path="res://Scenes/Coin.tscn" id="5_coin"]
 
@@ -45,7 +45,7 @@ JUMP_SPEED = 3.0
 [node name="TreasureBox" parent="." unique_id=485449976 instance=ExtResource("3_treasure")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.938867, 0.06681737, 5.5)
 
-[node name="HUD" parent="." instance=ExtResource("4_hud")]
+[node name="HUD" parent="." unique_id=994765100 instance=ExtResource("4_hud")]
 
-[node name="Coin" parent="." instance=ExtResource("5_coin")]
-position = Vector3(10.5, 0.2, 5.5)
+[node name="Coin" parent="." unique_id=39741769 instance=ExtResource("5_coin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.028094, 0.25736976, 4.85686)
