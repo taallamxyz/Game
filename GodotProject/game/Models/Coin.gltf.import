@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cy8pua17otcmo"
-path="res://.godot/imported/Treasure-box.glb-d2205d9610ce5ebeb9ac3cad67144db0.scn"
+uid="uid://bi62m71hkiklq"
+path="res://.godot/imported/Coin.gltf-8a826a50ae2e874f5d9927934067a40a.scn"
 
 [deps]
 
-source_file="res://Models/Treasure-box.glb"
-dest_files=["res://.godot/imported/Treasure-box.glb-d2205d9610ce5ebeb9ac3cad67144db0.scn"]
+source_file="res://Models/Coin.gltf"
+dest_files=["res://.godot/imported/Coin.gltf-8a826a50ae2e874f5d9927934067a40a.scn"]
 
 [params]
 

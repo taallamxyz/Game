@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://budl2to76o480"]
+
+[ext_resource type="Script" uid="uid://csalb4ry0ah01" path="res://Scripts/policeman.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://c43afpo2vytas" path="res://Models/Policeman.gltf" id="2_model"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_body"]
+radius = 0.28
+height = 1.55
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_interaction"]
+size = Vector3(1.5, 1.5, 1.5)
+
+[node name="Policeman" type="Area3D" unique_id=1984222400 groups=["interactable"]]
+collision_layer = 0
+monitorable = false
+script = ExtResource("1_script")
+
+[node name="Model" parent="." unique_id=908522271 instance=ExtResource("2_model")]
+
+[node name="Body" type="StaticBody3D" parent="." unique_id=1635261035]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body" unique_id=1992568295]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78, 0)
+shape = SubResource("CapsuleShape3D_body")
+
+[node name="InteractionShape" type="CollisionShape3D" parent="." unique_id=1223639624]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.84822786, 0)
+shape = SubResource("BoxShape3D_interaction")
+
+[node name="InteractionIndicator" type="Label3D" parent="." unique_id=1343243347]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8627758, 0)
+billboard = 1
+text = "E"
+font_size = 64
+outline_size = 8

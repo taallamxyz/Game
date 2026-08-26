@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dkmmp4akndagp"]
 
 [ext_resource type="Script" uid="uid://ccu44mvoedbg2" path="res://Scripts/treasure_box.gd" id="1_script"]
-[ext_resource type="PackedScene" uid="uid://cy8pua17otcmo" path="res://Models/Treasure-box.glb" id="2_model"]
+[ext_resource type="PackedScene" path="res://Models/Treasure-box.gltf" id="2_model"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_body"]
 size = Vector3(0.22, 0.2, 0.18)

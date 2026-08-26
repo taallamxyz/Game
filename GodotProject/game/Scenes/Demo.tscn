@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dkmmp4akndagp" path="res://Scenes/TreasureBox.tscn" id="3_treasure"]
 [ext_resource type="PackedScene" path="res://Scenes/HUD.tscn" id="4_hud"]
 [ext_resource type="PackedScene" path="res://Scenes/Coin.tscn" id="5_coin"]
+[ext_resource type="PackedScene" uid="uid://budl2to76o480" path="res://Scenes/Policeman.tscn" id="6_policeman"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
 sky_top_color = Color(0.25, 0.5, 0.9, 1)
@@ -25,7 +26,7 @@ ambient_light_energy = 1.2
 [node name="Node3D" type="Node3D" unique_id=1204233141]
 
 [node name="World" parent="." unique_id=106018233 instance=ExtResource("1_0jree")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0023994446, -0.035277396, -0.014318466)
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1321750440]
 environment = SubResource("Environment_sky")
@@ -37,15 +38,18 @@ light_energy = 1.2
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=18695575 instance=ExtResource("2_player")]
-transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 9.620497, 0.05519271, 5.531396)
+transform = Transform3D(0.17, 0, 0, 0, 0.17, 0, 0, 0, 0.17, 9.620497, 0.05519271, 5.531396)
 WALK_SPEED = 1.0
 RUN_SPEED = 2.0
 JUMP_SPEED = 3.0
 
 [node name="TreasureBox" parent="." unique_id=485449976 instance=ExtResource("3_treasure")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.938867, 0.06681737, 5.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.938867, 0.10230115, 5.5)
 
 [node name="HUD" parent="." unique_id=994765100 instance=ExtResource("4_hud")]
 
 [node name="Coin" parent="." unique_id=39741769 instance=ExtResource("5_coin")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.028094, 0.25736976, 4.85686)
+
+[node name="Policeman" parent="." unique_id=1198129235 instance=ExtResource("6_policeman")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 8.921674, 0.1, -1.1908708)

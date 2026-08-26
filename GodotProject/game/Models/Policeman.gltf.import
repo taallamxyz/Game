@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ivmfibex8hx3"
-path="res://.godot/imported/Hero1.glb-1445754c9c44bae1cc1555e82c476f69.scn"
+uid="uid://c43afpo2vytas"
+path="res://.godot/imported/Policeman.gltf-dbd98247f6bba6b8e204e8dc188172f5.scn"
 
 [deps]
 
-source_file="res://Models/Hero1.glb"
-dest_files=["res://.godot/imported/Hero1.glb-1445754c9c44bae1cc1555e82c476f69.scn"]
+source_file="res://Models/Policeman.gltf"
+dest_files=["res://.godot/imported/Policeman.gltf-dbd98247f6bba6b8e204e8dc188172f5.scn"]
 
 [params]
 
