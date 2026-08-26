@@ -26,7 +26,7 @@ ambient_light_energy = 1.2
 [node name="Node3D" type="Node3D" unique_id=1204233141]
 
 [node name="World" parent="." unique_id=106018233 instance=ExtResource("1_0jree")]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.004131317, 0.005370617, -0.0014308095)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1321750440]
 environment = SubResource("Environment_sky")
@@ -53,3 +53,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.028094, 0.25736976, 4.8568
 
 [node name="Policeman" parent="." unique_id=1198129235 instance=ExtResource("6_policeman")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 8.921674, 0.1, -1.1908708)
+dialogue_text = null
