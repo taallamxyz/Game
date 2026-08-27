@@ -53,4 +53,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.028094, 0.25736976, 4.8568
 
 [node name="Policeman" parent="." unique_id=1198129235 instance=ExtResource("6_policeman")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 8.921674, 0.1, -1.1908708)
-dialogue_text = null
