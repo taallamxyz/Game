@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cc0l3m08oleem"]
+
+[ext_resource type="Script" uid="uid://lsbl7kpoeogdi" path="res://Scripts/shopman.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://Models/Shopman.gltf" id="2_model"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_body"]
+radius = 0.28
+height = 1.55
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_interaction"]
+size = Vector3(1.5, 1.5, 1.5)
+
+[node name="Shopman" type="Area3D" groups=["interactable"]]
+collision_layer = 0
+monitorable = false
+script = ExtResource("1_script")
+
+[node name="Model" parent="." instance=ExtResource("2_model")]
+
+[node name="Body" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78, 0)
+shape = SubResource("CapsuleShape3D_body")
+
+[node name="InteractionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.84822786, 0)
+shape = SubResource("BoxShape3D_interaction")
+
+[node name="InteractionIndicator" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8627758, 0)
+billboard = 1
+text = "E"
+font_size = 64
+outline_size = 8

@@ -22,7 +22,8 @@ Dialogic="*uid://ds2q0uclmolvu"
 
 directories/dch_directory={}
 directories/dtl_directory={
-"policeman_intro": "res://Dialogues/policeman_intro.dtl"
+"policeman_intro": "res://Dialogues/policeman_intro.dtl",
+"shopman_intro": "res://Dialogues/shopman_intro.dtl"
 }
 layout/style_directory={}
 layout/default_style="res://DialogicStyles/RTL_Style.tres"
