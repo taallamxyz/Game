@@ -1,13 +1,11 @@
 [gd_scene format=3 uid="uid://bqp4fpnjr1lqv"]
 
 [ext_resource type="PackedScene" uid="uid://cx51bxiig0olb" path="res://Models/World.glb" id="1_0jree"]
-[ext_resource type="PackedScene" uid="uid://cxwsbrkx8u4lb" path="res://Scenes/Player.tscn" id="2_player"]
-[ext_resource type="PackedScene" uid="uid://dkmmp4akndagp" path="res://Scenes/TreasureBox.tscn" id="3_treasure"]
-[ext_resource type="PackedScene" path="res://Scenes/HUD.tscn" id="4_hud"]
-[ext_resource type="PackedScene" path="res://Scenes/Coin.tscn" id="5_coin"]
-[ext_resource type="PackedScene" uid="uid://budl2to76o480" path="res://Scenes/Policeman.tscn" id="6_policeman"]
-[ext_resource type="PackedScene" uid="uid://6u326ler4x60y" path="res://Scenes/Shop.tscn" id="7_shop"]
-[ext_resource type="PackedScene" uid="uid://4euo71gzm0ioy" path="res://Scenes/Shopman.tscn" id="8_shopman"]
+[ext_resource type="PackedScene" uid="uid://cxwsbrkx8u4lb" path="res://Prefabs/Player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://dkmmp4akndagp" path="res://Prefabs/TreasureBox.tscn" id="3_treasure"]
+[ext_resource type="PackedScene" path="res://Prefabs/HUD.tscn" id="4_hud"]
+[ext_resource type="PackedScene" path="res://Prefabs/Coin.tscn" id="5_coin"]
+[ext_resource type="PackedScene" uid="uid://budl2to76o480" path="res://Prefabs/Policeman.tscn" id="6_policeman"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
 sky_top_color = Color(0.25, 0.5, 0.9, 1)
@@ -55,9 +53,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.028094, 0.25736976, 4.8568
 
 [node name="Policeman" parent="." unique_id=1198129235 instance=ExtResource("6_policeman")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 8.921674, 0.1, -1.1908708)
-
-[node name="Shop" parent="." instance=ExtResource("7_shop")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 3.0, 0.0, -4.0)
-
-[node name="Shopman" parent="." instance=ExtResource("8_shopman")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 3.5, 0.1, -2.5)
