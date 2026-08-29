@@ -61,8 +61,11 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 8.921674, 0.1, -1.19087
 [node name="ShopDoor" type="Area3D" parent="." unique_id=1678234501]
 transform = Transform3D(0.435, 0, 0, 0, 0.295, 0, 0, 0, 0.32, 8.707453, 0.07978934, 3.9113486)
 collision_layer = 0
+collision_mask = 1
 script = ExtResource("7_door")
 target_scene = "uid://c018f3yy0ij11"
+require_interact = true
+prompt_text = "E"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ShopDoor" unique_id=1678234502]
 shape = SubResource("BoxShape3D_shopdoor")

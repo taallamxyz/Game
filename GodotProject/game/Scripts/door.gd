@@ -5,6 +5,7 @@ extends Area3D
 @export var prompt_text: String = "E"
 
 var _player_in_range: bool = false
+var _is_transitioning: bool = false
 
 @onready var _prompt: Label3D = $Prompt if has_node("Prompt") else null
 
@@ -47,4 +48,12 @@ func _change_scene() -> void:
 	if target_scene == "":
 		push_warning("Door target_scene not set on %s" % name)
 		return
-	get_tree().change_scene_to_file(target_scene)
+	if _is_transitioning:
+		return
+	_is_transitioning = true
+	# Prefer cinematic autoload, fallback to instant
+	if has_node("/root/SceneTransition") and get_node("/root/SceneTransition").has_method("change_scene"):
+		await get_node("/root/SceneTransition").change_scene(target_scene, 0.45)
+		_is_transitioning = false
+	else:
+		get_tree().change_scene_to_file(target_scene)

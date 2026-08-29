@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.7", "Mobile")
 [autoload]
 
 Dialogic="*uid://ds2q0uclmolvu"
+SceneTransition="*res://Autoload/SceneTransition.tscn"
 
 [dialogic]
 
