@@ -2,6 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://cxwsbrkx8u4lb" path="res://Prefabs/Player.tscn" id="1_x7s06"]
 [ext_resource type="PackedScene" uid="uid://bamb45xlarjni" path="res://Models/Shop.gltf" id="2_ggt0q"]
+[ext_resource type="Script" uid="uid://cic7xnusmxvvw" path="res://Scripts/door.gd" id="3_door"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_door"]
+size = Vector3(2, 2, 0.5)
 
 [node name="Shop" type="Node3D" unique_id=1615273524]
 
@@ -18,5 +22,19 @@ transform = Transform3D(0.535, 0, 0, 0, 0.535, 0, 0, 0, 0.535, -2.8193555, 0.392
 
 [node name="Shop" parent="." unique_id=225299764 instance=ExtResource("2_ggt0q")]
 
-[node name="ShopDoor" type="Node3D" parent="." unique_id=1428695566]
-transform = Transform3D(200, 0, 0, 0, 199.97852, 1.4654669, 0, -2.9309337, 99.98926, 0.057462156, 1.0331223, 5.3377576)
+[node name="ShopDoor" type="Area3D" parent="." unique_id=1428695566]
+transform = Transform3D(3.925, 0, 0, 0, 1, 0, 0, 0, 1, 0.057462156, 0.3275652, 5.3377576)
+collision_layer = 0
+script = ExtResource("3_door")
+target_scene = "res://Scenes/DemoScene.tscn"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ShopDoor" unique_id=892345671]
+shape = SubResource("BoxShape3D_door")
+
+[node name="Prompt" type="Label3D" parent="ShopDoor" unique_id=892345672]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+visible = false
+billboard = 1
+text = "E"
+font_size = 64
+outline_size = 8

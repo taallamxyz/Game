@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" path="res://Prefabs/HUD.tscn" id="4_hud"]
 [ext_resource type="PackedScene" path="res://Prefabs/Coin.tscn" id="5_coin"]
 [ext_resource type="PackedScene" uid="uid://budl2to76o480" path="res://Prefabs/Policeman.tscn" id="6_policeman"]
+[ext_resource type="Script" uid="uid://cic7xnusmxvvw" path="res://Scripts/door.gd" id="7_door"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
 sky_top_color = Color(0.25, 0.5, 0.9, 1)
@@ -22,6 +23,9 @@ background_mode = 2
 sky = SubResource("Sky_sky")
 ambient_light_source = 3
 ambient_light_energy = 1.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_shopdoor"]
+size = Vector3(2, 2, 0.5)
 
 [node name="Node3D" type="Node3D" unique_id=1204233141]
 
@@ -53,3 +57,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.028094, 0.25736976, 4.8568
 
 [node name="Policeman" parent="." unique_id=1198129235 instance=ExtResource("6_policeman")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 8.921674, 0.1, -1.1908708)
+
+[node name="ShopDoor" type="Area3D" parent="." unique_id=1678234501]
+transform = Transform3D(0.435, 0, 0, 0, 0.295, 0, 0, 0, 0.32, 8.707453, 0.07978934, 3.9113486)
+collision_layer = 0
+script = ExtResource("7_door")
+target_scene = "uid://c018f3yy0ij11"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ShopDoor" unique_id=1678234502]
+shape = SubResource("BoxShape3D_shopdoor")
+
+[node name="Prompt" type="Label3D" parent="ShopDoor" unique_id=1678234503]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+visible = false
+billboard = 1
+text = "SHOP"
+font_size = 64
+outline_size = 8
+
+[node name="ShopDoorMarker" type="Marker3D" parent="ShopDoor" unique_id=1678234504]
