@@ -7,6 +7,9 @@ extends CharacterBody3D
 @export var ROTATION_SPEED := 10.0
 @export var FALL_THRESHOLD := -5.0
 @export var max_health := 100
+@export var JOYPAD_CAMERA_SENSITIVITY := 2.5
+@export var JOYPAD_DEADZONE := 0.15
+@export var JOYPAD_Y_INVERT := false
 
 @onready var model: Node3D = $Model
 @onready var camera_pivot: Node3D = $CameraPivot
@@ -24,8 +27,28 @@ signal health_changed(current_health: int, maximum_health: int)
 signal coins_changed(amount: int)
 
 func _ready() -> void:
+	var gs := get_node_or_null("/root/GameState")
+	# Sync coins/health from GameState
+	if gs:
+		coins = gs.coins
+		health = gs.health
+		max_health = gs.max_health
 
-	respawn_position = global_position
+	# Dynamic spawn: if we came from another scene via door, teleport to that door's SpawTarget
+	if gs and gs.pending_spawn:
+		var spawn_transform = _find_spaw_target(gs.last_scene_path)
+		if spawn_transform != null:
+			global_position = spawn_transform.origin
+			# Face away from door (use marker rotation)
+			camera_pivot.rotation.y = spawn_transform.basis.get_euler().y
+			respawn_position = global_position
+			gs.clear_pending_spawn()
+		else:
+			respawn_position = global_position
+			gs.clear_pending_spawn()
+	else:
+		respawn_position = global_position
+
 	camera.position = Vector3(0.0, 2.2, 5.0)
 	camera_pivot.rotation.x = camera_pitch
 	camera.current = true
@@ -37,6 +60,11 @@ func _ready() -> void:
 
 	health_changed.emit(health, max_health)
 	coins_changed.emit(coins)
+	# Ensure GameState stays synced
+	if gs:
+		gs.coins = coins
+		gs.health = health
+		gs.max_health = max_health
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -53,11 +81,17 @@ func _unhandled_input(event: InputEvent) -> void:
 		add_coin()
 
 func _physics_process(delta: float) -> void:
+	_update_joypad_camera(delta)
+
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_SPEED
+		# If an interact was just pressed, prioritize interact over jump (both on Cross/✕ on PS4)
+		if Input.is_action_just_pressed("interact") and _is_near_interactable():
+			pass
+		else:
+			velocity.y = JUMP_SPEED
 
 	var input_vector := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var forward := -camera_pivot.global_transform.basis.z
@@ -94,10 +128,83 @@ func respawn() -> void:
 func take_damage(amount: int) -> void:
 	health = maxi(health - amount, 0)
 	health_changed.emit(health, max_health)
+	var gs := get_node_or_null("/root/GameState")
+	if gs:
+		gs.health = health
 
 func add_coin(amount: int = 1) -> void:
 	coins += amount
 	coins_changed.emit(coins)
+	var gs := get_node_or_null("/root/GameState")
+	if gs:
+		gs.coins = coins
+
+func _find_spaw_target(last_scene_path: String):
+	# Find door in current scene whose target_scene matches last_scene_path, then return its SpawTarget
+	var current_scene := get_tree().current_scene
+	if current_scene == null:
+		return Transform3D()
+	var doors: Array = current_scene.find_children("*", "Area3D", true, false)
+	for door in doors:
+		if not "target_scene" in door:
+			continue
+		var target: String = door.get("target_scene")
+		var match_found := false
+		if target == last_scene_path:
+			match_found = true
+		elif target != "" and last_scene_path != "":
+			# Loose match for uid vs path after Demo->Main rename
+			if target.get_file() == last_scene_path.get_file():
+				match_found = true
+			elif "MainScene" in target and "MainScene" in last_scene_path:
+				match_found = true
+			elif "ShopScene" in target and "ShopScene" in last_scene_path:
+				match_found = true
+		if match_found:
+			var spaw := door.find_child("SpawTarget", true, false) as Node3D
+			if spaw == null:
+				spaw = door.find_child("SpawnTarget", true, false) as Node3D
+			if spaw:
+				return spaw.global_transform
+	# Fallback: any SpawTarget in scene (single-door scenes like Shop)
+	var fallback := current_scene.find_child("SpawTarget", true, false) as Node3D
+	if fallback == null:
+		fallback = current_scene.find_child("SpawnTarget", true, false) as Node3D
+	if fallback:
+		return fallback.global_transform
+	return null
+
+func _update_joypad_camera(delta: float) -> void:
+	# Right stick (axis 2 = horizontal, 3 = vertical) for camera look - PS4 DualShock 4
+	var joy_x := Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)
+	var joy_y := Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
+	if abs(joy_x) < JOYPAD_DEADZONE:
+		joy_x = 0.0
+	if abs(joy_y) < JOYPAD_DEADZONE:
+		joy_y = 0.0
+	if joy_x == 0.0 and joy_y == 0.0:
+		return
+	# Scale by sensitivity and delta; invert Y if requested
+	if JOYPAD_Y_INVERT:
+		joy_y = -joy_y
+	camera_pivot.rotation.y -= joy_x * JOYPAD_CAMERA_SENSITIVITY * delta
+	camera_pitch = clampf(camera_pitch - joy_y * JOYPAD_CAMERA_SENSITIVITY * delta, -1.1, 0.2)
+	camera_pivot.rotation.x = camera_pitch
+
+
+func _is_near_interactable() -> bool:
+	# Check if any Area3D interactable has player in range (door/shopman/police/box)
+	var current_scene := get_tree().current_scene
+	if current_scene == null:
+		return false
+	var areas: Array = current_scene.find_children("*", "Area3D", true, false)
+	for area in areas:
+		if "player_in_range" in area and area.get("player_in_range"):
+			return true
+		if "_player_in_range" in area and area.get("_player_in_range"):
+			return true
+	return false
+
 
 func _find_animation_player() -> AnimationPlayer:
 	return model.find_child("AnimationPlayer", true, false) as AnimationPlayer

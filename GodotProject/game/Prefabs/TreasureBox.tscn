@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://dkmmp4akndagp"]
 
 [ext_resource type="Script" uid="uid://ccu44mvoedbg2" path="res://Scripts/treasure_box.gd" id="1_script"]
-[ext_resource type="PackedScene" path="res://Models/Treasure-box.gltf" id="2_model"]
+[ext_resource type="PackedScene" uid="uid://duk6cwx4sek5n" path="res://Models/Treasure-box.gltf" id="2_model"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_body"]
-size = Vector3(0.22, 0.2, 0.18)
+size = Vector3(0.975166, 0.862677, 0.9663892)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_interaction"]
-size = Vector3(0.5, 0.5, 0.5)
+size = Vector3(2.065979, 1.0829468, 2.054573)
 
 [node name="TreasureBox" type="Area3D" unique_id=267340291 groups=["interactable"]]
 collision_layer = 0
@@ -19,15 +19,15 @@ script = ExtResource("1_script")
 [node name="Body" type="StaticBody3D" parent="." unique_id=2007365326]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body" unique_id=1986941405]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00020995736, 0.42978758, -0.0007751137)
 shape = SubResource("BoxShape3D_body")
 
 [node name="InteractionShape" type="CollisionShape3D" parent="." unique_id=1685444628]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.017425537, 0.50401175, -0.015964508)
 shape = SubResource("BoxShape3D_interaction")
 
 [node name="InteractionIndicator" type="Label3D" parent="." unique_id=1971169110]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23598552, 0)
-pixel_size = 0.001
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0984559, 0)
 billboard = 1
 text = "E"
 font_size = 64

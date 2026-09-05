@@ -1334,7 +1334,7 @@
 		{
 			"mimeType":"image/png",
 			"name":"Common.png",
-			"uri":"textures/Common.png"
+			"uri":"../GodotProject/game/Models/textures/Common.png"
 		}
 	],
 	"accessors":[
@@ -2597,7 +2597,7 @@
 		{
 			"bufferView":141,
 			"componentType":5126,
-			"count":1699,
+			"count":1649,
 			"max":[
 				10.162590980529785,
 				5.844118118286133,
@@ -2613,19 +2613,19 @@
 		{
 			"bufferView":142,
 			"componentType":5126,
-			"count":1699,
+			"count":1649,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":143,
 			"componentType":5126,
-			"count":1699,
+			"count":1649,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":144,
 			"componentType":5123,
-			"count":4272,
+			"count":4152,
 			"type":"SCALAR"
 		}
 	],
@@ -3478,26 +3478,26 @@
 		},
 		{
 			"buffer":0,
-			"byteLength":20388,
+			"byteLength":19788,
 			"byteOffset":12054864,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":20388,
-			"byteOffset":12075252,
+			"byteLength":19788,
+			"byteOffset":12074652,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":13592,
-			"byteOffset":12095640,
+			"byteLength":13192,
+			"byteOffset":12094440,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":8544,
-			"byteOffset":12109232,
+			"byteLength":8304,
+			"byteOffset":12107632,
 			"target":34963
 		}
 	],
@@ -3509,7 +3509,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":12117776,
+			"byteLength":12115936,
 			"uri":"Shop.bin"
 		}
 	]

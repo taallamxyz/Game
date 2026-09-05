@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://bqp4fpnjr1lqv"]
 
-[ext_resource type="PackedScene" uid="uid://cx51bxiig0olb" path="res://Models/World.glb" id="1_0jree"]
-[ext_resource type="PackedScene" uid="uid://cxwsbrkx8u4lb" path="res://Prefabs/Player.tscn" id="2_player"]
-[ext_resource type="PackedScene" uid="uid://dkmmp4akndagp" path="res://Prefabs/TreasureBox.tscn" id="3_treasure"]
-[ext_resource type="PackedScene" path="res://Prefabs/HUD.tscn" id="4_hud"]
-[ext_resource type="PackedScene" path="res://Prefabs/Coin.tscn" id="5_coin"]
-[ext_resource type="PackedScene" uid="uid://budl2to76o480" path="res://Prefabs/Policeman.tscn" id="6_policeman"]
-[ext_resource type="Script" uid="uid://cic7xnusmxvvw" path="res://Scripts/door.gd" id="7_door"]
+[ext_resource type="PackedScene" uid="uid://cx51bxiig0olb" path="res://Models/World.glb" id="1_q68mp"]
+[ext_resource type="PackedScene" uid="uid://cxwsbrkx8u4lb" path="res://Prefabs/Player.tscn" id="2_f140w"]
+[ext_resource type="PackedScene" uid="uid://dkmmp4akndagp" path="res://Prefabs/TreasureBox.tscn" id="3_0iob3"]
+[ext_resource type="PackedScene" path="res://Prefabs/HUD.tscn" id="4_4b75m"]
+[ext_resource type="PackedScene" path="res://Prefabs/Coin.tscn" id="5_8ju71"]
+[ext_resource type="PackedScene" uid="uid://budl2to76o480" path="res://Prefabs/Policeman.tscn" id="6_xb4mg"]
+[ext_resource type="Script" uid="uid://cic7xnusmxvvw" path="res://Scripts/door.gd" id="7_6t1o7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
 sky_top_color = Color(0.25, 0.5, 0.9, 1)
@@ -25,11 +25,11 @@ ambient_light_source = 3
 ambient_light_energy = 1.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_shopdoor"]
-size = Vector3(2, 2, 0.5)
+size = Vector3(2.1035156, 4.1123657, 1.5253906)
 
 [node name="Node3D" type="Node3D" unique_id=1204233141]
 
-[node name="World" parent="." unique_id=106018233 instance=ExtResource("1_0jree")]
+[node name="World" parent="." unique_id=106018233 instance=ExtResource("1_q68mp")]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.004131317, 0.005370617, -0.0014308095)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1321750440]
@@ -41,33 +41,32 @@ light_color = Color(1, 0.95, 0.85, 1)
 light_energy = 1.2
 shadow_enabled = true
 
-[node name="Player" parent="." unique_id=18695575 instance=ExtResource("2_player")]
-transform = Transform3D(0.17, 0, 0, 0, 0.17, 0, 0, 0, 0.17, 9.620497, 0.05519271, 5.531396)
-WALK_SPEED = 1.0
-RUN_SPEED = 2.0
-JUMP_SPEED = 3.0
+[node name="Player" parent="." unique_id=18695575 instance=ExtResource("2_f140w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.620497, 0.05519271, 5.531396)
+WALK_SPEED = 4.0
+RUN_SPEED = 8.0
+JUMP_SPEED = 6.0
 
-[node name="TreasureBox" parent="." unique_id=485449976 instance=ExtResource("3_treasure")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.938867, 0.10230115, 5.5)
+[node name="TreasureBox" parent="." unique_id=485449976 instance=ExtResource("3_0iob3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4970202, -0.034058064, 17.043484)
 
-[node name="HUD" parent="." unique_id=994765100 instance=ExtResource("4_hud")]
+[node name="HUD" parent="." unique_id=994765100 instance=ExtResource("4_4b75m")]
 
-[node name="Coin" parent="." unique_id=39741769 instance=ExtResource("5_coin")]
+[node name="Coin" parent="." unique_id=39741769 instance=ExtResource("5_8ju71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.028094, 0.25736976, 4.85686)
 
-[node name="Policeman" parent="." unique_id=1198129235 instance=ExtResource("6_policeman")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 8.921674, 0.1, -1.1908708)
+[node name="Policeman" parent="." unique_id=1198129235 instance=ExtResource("6_xb4mg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.921674, 0.1, -1.1908708)
 
 [node name="ShopDoor" type="Area3D" parent="." unique_id=1678234501]
-transform = Transform3D(0.435, 0, 0, 0, 0.295, 0, 0, 0, 0.32, 8.707453, 0.07978934, 3.9113486)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.120728, 0.07978934, -15.717014)
 collision_layer = 0
-collision_mask = 1
-script = ExtResource("7_door")
+script = ExtResource("7_6t1o7")
 target_scene = "uid://c018f3yy0ij11"
 require_interact = true
-prompt_text = "E"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ShopDoor" unique_id=1678234502]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.051757813, 1.0561829, 0.0009765625)
 shape = SubResource("BoxShape3D_shopdoor")
 
 [node name="Prompt" type="Label3D" parent="ShopDoor" unique_id=1678234503]
@@ -79,3 +78,6 @@ font_size = 64
 outline_size = 8
 
 [node name="ShopDoorMarker" type="Marker3D" parent="ShopDoor" unique_id=1678234504]
+
+[node name="SpawTarget" type="Node3D" parent="ShopDoor" unique_id=755738302]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.130146, 0, 0)

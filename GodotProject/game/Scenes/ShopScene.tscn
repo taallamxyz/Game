@@ -3,9 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://cxwsbrkx8u4lb" path="res://Prefabs/Player.tscn" id="1_x7s06"]
 [ext_resource type="PackedScene" uid="uid://bamb45xlarjni" path="res://Models/Shop.gltf" id="2_ggt0q"]
 [ext_resource type="Script" uid="uid://cic7xnusmxvvw" path="res://Scripts/door.gd" id="3_door"]
+[ext_resource type="PackedScene" path="res://Prefabs/HUD.tscn" id="4_hud"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_door"]
-size = Vector3(2, 2, 0.5)
+size = Vector3(4.1348877, 2.6635742, 0.97927856)
 
 [node name="Shop" type="Node3D" unique_id=1615273524]
 
@@ -18,20 +19,23 @@ area_range = 13.931
 area_size = Vector2(20.916, 7.844)
 
 [node name="Player" parent="." unique_id=1863557764 instance=ExtResource("1_x7s06")]
-transform = Transform3D(0.535, 0, 0, 0, 0.535, 0, 0, 0, 0.535, -2.8193555, 0.39219475, 1.1084142)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0.47401828, 0.32543963, 4.4639697)
+WALK_SPEED = 4.0
+RUN_SPEED = 8.0
 
 [node name="Shop" parent="." unique_id=225299764 instance=ExtResource("2_ggt0q")]
 
+[node name="HUD" parent="." unique_id=994765101 instance=ExtResource("4_hud")]
+
 [node name="ShopDoor" type="Area3D" parent="." unique_id=1428695566]
-transform = Transform3D(3.925, 0, 0, 0, 1, 0, 0, 0, 1, 0.057462156, 0.3275652, 5.3377576)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1535266, 0.3275652, 5.661338)
 collision_layer = 0
-collision_mask = 1
 script = ExtResource("3_door")
-target_scene = "res://Scenes/DemoScene.tscn"
+target_scene = "res://Scenes/MainScene.tscn"
 require_interact = true
-prompt_text = "E"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ShopDoor" unique_id=892345671]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07879639, 0.3317871, 2.4516382)
 shape = SubResource("BoxShape3D_door")
 
 [node name="Prompt" type="Label3D" parent="ShopDoor" unique_id=892345672]
@@ -41,3 +45,6 @@ billboard = 1
 text = "E"
 font_size = 64
 outline_size = 8
+
+[node name="SpawTarget" type="Node3D" parent="ShopDoor" unique_id=1736211464]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19550425, -0.27170706, -0.82829857)
