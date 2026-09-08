@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bamb45xlarjni" path="res://Models/Shop.gltf" id="2_ggt0q"]
 [ext_resource type="Script" uid="uid://cic7xnusmxvvw" path="res://Scripts/door.gd" id="3_door"]
 [ext_resource type="PackedScene" path="res://Prefabs/HUD.tscn" id="4_hud"]
+[ext_resource type="PackedScene" uid="uid://cc0l3m08oleem" path="res://Prefabs/Shopman.tscn" id="5_je6ka"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_door"]
 size = Vector3(4.1348877, 2.6635742, 0.97927856)
@@ -39,7 +40,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07879639, 0.3317871, 2.4516
 shape = SubResource("BoxShape3D_door")
 
 [node name="Prompt" type="Label3D" parent="ShopDoor" unique_id=892345672]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2914188, 2.459117)
 visible = false
 billboard = 1
 text = "E"
@@ -48,3 +49,6 @@ outline_size = 8
 
 [node name="SpawTarget" type="Node3D" parent="ShopDoor" unique_id=1736211464]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19550425, -0.27170706, -0.82829857)
+
+[node name="Shopman" parent="ShopDoor" unique_id=742247258 instance=ExtResource("5_je6ka")]
+transform = Transform3D(-0.9723524, 0, 0.23351833, 0, 1, 0, -0.23351833, 0, -0.9723524, -8.298808, -0.77956665, 0.11669779)

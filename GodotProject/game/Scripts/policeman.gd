@@ -3,6 +3,7 @@ extends Area3D
 @export_file("*.dtl") var dialogue_timeline := "res://Dialogues/policeman_intro.dtl"
 
 var player_in_range := false
+var _dialog_active := false
 @onready var interaction_indicator: Label3D = $InteractionIndicator
 @onready var animation_player: AnimationPlayer = find_child("AnimationPlayer", true, false) as AnimationPlayer
 
@@ -30,10 +31,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	if player_in_range and event.is_action_pressed("interact"):
 		if Dialogic.current_timeline == null:
 			Dialogic.start(dialogue_timeline)
+			_dialog_active = true
 			interaction_indicator.visible = false
 			get_viewport().set_input_as_handled()
 
 func _on_dialogue_ended() -> void:
+	_dialog_active = false
 	if player_in_range:
 		interaction_indicator.visible = true
 
@@ -47,3 +50,10 @@ func _on_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		player_in_range = false
 		interaction_indicator.visible = false
+		# Auto-dismiss dialog if player walks away without finishing (A)
+		if _dialog_active and Dialogic.current_timeline != null:
+			Dialogic.end_timeline()
+
+func _exit_tree() -> void:
+	if Dialogic.timeline_ended.is_connected(_on_dialogue_ended):
+		Dialogic.timeline_ended.disconnect(_on_dialogue_ended)

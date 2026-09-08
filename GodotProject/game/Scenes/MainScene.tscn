@@ -70,7 +70,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.051757813, 1.0561829, 0.00
 shape = SubResource("BoxShape3D_shopdoor")
 
 [node name="Prompt" type="Label3D" parent="ShopDoor" unique_id=1678234503]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.119184, 0)
 visible = false
 billboard = 1
 text = "SHOP"
