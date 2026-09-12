@@ -1,0 +1,33 @@
+# Unity generated folders and files
+UnityProject/**/Library/
+UnityProject/**/Temp/
+UnityProject/**/Obj/
+UnityProject/**/Build/
+UnityProject/**/Builds/
+UnityProject/**/Logs/
+UnityProject/**/UserSettings/
+UnityProject/**/MemoryCaptures/
+UnityProject/**/Recordings/
+UnityProject/**/Assets/AssetStoreTools/
+
+# Unity crash reports
+UnityProject/**/*.log
+UnityProject/**/sysinfo.txt
+
+# IDE and editor files
+UnityProject/**/*.csproj
+UnityProject/**/*.sln
+UnityProject/**/*.suo
+UnityProject/**/*.user
+UnityProject/**/*.userprefs
+UnityProject/**/*.pidb
+UnityProject/**/*.booproj
+UnityProject/**/*.pidb.meta
+UnityProject/**/*.slnx
+UnityProject/.vs/
+UnityProject/.idea/
+UnityProject/**/.vscode/
+
+# OS metadata
+.DS_Store
+Thumbs.db
